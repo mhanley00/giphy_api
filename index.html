@@ -1,53 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Crystals Collector</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="assets/javascript/game.js"></script>
-  </head>
-  <body>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 title"><h1>Crystals Collector!</h1></div>
-       </div> <!-- might need to adjust this if box needs to look like example -->
-  <div class="row">
-    <div class="col-md-5 instructions">
-        <p>You will be given a random number at the start of the game.</p>
-        <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
-        <p>You win the game by matching your total score to a random number, you lose the game if your total score goes above the random number.</p>
-        <p>The value of each crystal is hidden from you until you click on it.</p>
-        <p>Each time when the game starts, the game will change the values of each crystal.</p>
-    </div>
-    </div>  
-  <div class="row">
-    <div class="col-md-3 greenBox"><h2 id="new-Num"></h2></div> 
-    <div class="col-md-2 tallyBox"><h4><span id="result"></span></h4>
-        <br><h4>Wins: <span id ="winCount"> 0</span></h4>
-        <br><h4>Losses: <span id="lossCount"> 0</span></h4>
-        </div>
-    </div> 
-<div class="row">
-    <div class="col-md-6">
-                <button id="quartz" class="btn btn-choice"></button>
-                <button id="diamond" class="btn btn-choice"></button>
-                <button id="topaz" class="btn btn-choice"></button>
-                <button id="emerald" class="btn btn-choice"></button>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-3 scoreBox"><p>Your total score is:</p></div>
-</div>
-<div class="row">
-    <div class="col-md-3 scoreBox"><h3 id="currScore"></h3></div>
-</div>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Parks & Rec Gif Generator </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="assets/javascript/game.js"></script>
+</head>
+
+<body>
+  <h1>Parks & Rec Gif Generator</h1>
+
+  <!-- gifs will go here -->
+  <div id="gifs-appear"></div>
+
+  <!-- Rendered Buttons will get Dumped Here  -->
+  <div id="buttons-appear"></div>
+
+  <form id="gifs-form">
+    <label for="gif-input">Gif Me:</label>
+    <input type="text" id="gif-input">
+    <br>
+
+    <!-- Button triggers new movie to be added -->
+    <input id="add-gif" type="submit" value="Gif Me">
+  </form>
 
 
-   
-  </body>
+</body>
+
 </html>
-
-
