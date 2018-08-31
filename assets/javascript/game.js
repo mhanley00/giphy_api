@@ -30,7 +30,7 @@ $(document).ready(function(){
   $("body").on("click",".gif-btn", function() {
 
     var gif = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q="+ gif +"&api_key=ZyxT832NSIkv6I3IPQ0DKZ2nipbpdpFj&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ gif +"&api_key=ZyxT832NSIkv6I3IPQ0DKZ2nipbpdpFj&limit=10";
     
     
     // Creating an AJAX call for the specific gif button being clicked
