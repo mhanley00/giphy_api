@@ -1,7 +1,12 @@
 Parks & Rec Gif Generator
 
 This web app brings your favorite Parks & Rec
-moments to life.
+moments to life by character. Click any of the
+existing buttons to generate gifs of Leslie 
+Knope, Tom Haverford, Donna Meagle, and more,
+or add your own favorite character to generate
+a new button and watch even more great Parks &
+Rec momemts. Go ahead, treat yo'self.
 
 This project is my first foray into APIs! It 
 honestly opened up a whole new world of web
