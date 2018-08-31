@@ -12,7 +12,6 @@ function renderButtons() {
     a.attr("data-name", gifs[i]);
     a.text(gifs[i]);
     $("#buttons-appear").append(a);
-    console.log(a);
   }
 }
 
@@ -23,6 +22,7 @@ $(document).ready(function(){
   $("body").on("click","#add-gif" ,function(event) { //when button gets clicked...
     event.preventDefault();
     var newGif = $("#gif-input").val().trim();
+    console.log(newGif);
     gifs.push(newGif);
     renderButtons(); //cycling through array again, no dupes, make new button
   });
@@ -31,7 +31,7 @@ $(document).ready(function(){
   $("body").on("click",".gif-btn", function() {
 
     var gif = $(this).attr("data-name");
-    console.log(gif);
+    console.log(this);
     var queryURL = "http://api.giphy.com/v1/gifs/search?q="+ gif +"&api_key=ZyxT832NSIkv6I3IPQ0DKZ2nipbpdpFj&limit=5";
     
     
@@ -41,24 +41,26 @@ $(document).ready(function(){
       method: "GET"
     }).then(function(response) {
       console.log(response);
-      
-        var results = response.data;
-        for (var i = 0; i < results.length; i++) {
-            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-                var gifDiv = $("<div class='gif'>");}
+        // var results = response.data;
+        for (var i = 0; i < response.data.length; i++) {
+            //if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+              var gifDiv = $("<div class='gif'>");//}
               
-              }; //endfor
-      var rating = results[i].rating; //rating from JSON
-      var pOne = $("<p>").text("Rating: " + rating); //create p element where rating will appear
+             
+      // var rating = response.data[i].rating; //rating from JSON
+      // var pOne = $("<p>").text("Rating: " + rating); //create p element where rating will appear
 
-      gifDiv.append(pOne); //add rating to the gif div
+      // gifDiv.append(pOne); //add rating to the gif div
 
-      var imgURL = response.Poster; //URL for the image
+      var image = $("<img>");
+      image.attr("src", response.data[i].images.fixed_height.url);
 
-      var image = $("<img>").attr("src", imgURL); //create img element, image will go here
+      // var image = $("<img>").attr("src", response.data[i].images.fixed_height.url); //create img element, image will go here
+      console.log(image);
       gifDiv.append(image);
 
-      $("#gifs-appear").prepend(GifDiv);
+      $("#gifs-appear").prepend(gifDiv);
+    }; //endfor
               }) //end .then
 
   }); //end button on click
