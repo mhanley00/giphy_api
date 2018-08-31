@@ -1,16 +1,16 @@
 // Initial array of gifs
-var gifs = ["leslie knope", "tom haverford", "donna meagle", "ben wyatt", "april ludgate", "andy dwyer"];
+var topics = ["leslie knope", "tom haverford", "donna meagle", "ben wyatt", "april ludgate", "andy dwyer"];
 
 function renderButtons() {
 
   $("#buttons-appear").empty(); // avoid dupes
 
-  for (var i = 0; i < gifs.length; i++) {
+  for (var i = 0; i < topics.length; i++) {
     var a = $("<button>");
 
     a.addClass("gif-btn");
-    a.attr("data-name", gifs[i]);
-    a.text(gifs[i]);
+    a.attr("data-name", topics[i]);
+    a.text(topics[i]);
     $("#buttons-appear").append(a);
   }
 }
@@ -23,7 +23,7 @@ $(document).ready(function(){
     event.preventDefault();
     var newGif = $("#gif-input").val().trim();
     console.log(newGif);
-    gifs.push(newGif);
+    topics.push(newGif);
     renderButtons(); //cycling through array again, no dupes, make new button
   });
 
@@ -32,7 +32,7 @@ $(document).ready(function(){
 
     var gif = $(this).attr("data-name");
     console.log(this);
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q="+ gif +"&api_key=ZyxT832NSIkv6I3IPQ0DKZ2nipbpdpFj&limit=5";
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q="+ gif +"&api_key=ZyxT832NSIkv6I3IPQ0DKZ2nipbpdpFj&limit=10";
     
     
     // Creating an AJAX call for the specific gif button being clicked
@@ -47,10 +47,10 @@ $(document).ready(function(){
               var gifDiv = $("<div class='gif'>");//}
               
              
-      // var rating = response.data[i].rating; //rating from JSON
-      // var pOne = $("<p>").text("Rating: " + rating); //create p element where rating will appear
+      var rating = response.data[i].rating; //rating from JSON
+      var pOne = $("<p>").text("Rating: " + rating); //create p element where rating will appear
 
-      // gifDiv.append(pOne); //add rating to the gif div
+      gifDiv.append(pOne); //add rating to the gif div
 
       var image = $("<img>");
       image.attr("src", response.data[i].images.fixed_height.url);
