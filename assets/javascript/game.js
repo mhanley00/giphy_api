@@ -22,7 +22,6 @@ $(document).ready(function(){
   $("body").on("click","#add-gif" ,function(event) { //when button gets clicked...
     event.preventDefault();
     var newGif = $("#gif-input").val().trim();
-    console.log(newGif);
     topics.push(newGif);
     renderButtons(); //cycling through array again, no dupes, make new button
   });
@@ -31,7 +30,6 @@ $(document).ready(function(){
   $("body").on("click",".gif-btn", function() {
 
     var gif = $(this).attr("data-name");
-    console.log(this);
     var queryURL = "http://api.giphy.com/v1/gifs/search?q="+ gif +"&api_key=ZyxT832NSIkv6I3IPQ0DKZ2nipbpdpFj&limit=10";
     
     
@@ -40,11 +38,8 @@ $(document).ready(function(){
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
-        // var results = response.data;
         for (var i = 0; i < response.data.length; i++) {
-            //if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-              var gifDiv = $("<div class='gif'>");//}
+              var gifDiv = $("<div class='gif'>");
               
              
       var rating = response.data[i].rating; //rating from JSON
@@ -53,15 +48,26 @@ $(document).ready(function(){
       gifDiv.append(pOne); //add rating to the gif div
 
       var image = $("<img>");
-      image.attr("src", response.data[i].images.fixed_height.url);
+      // image.attr("src", response.data[i].images.fixed_height.url); change to this if want gifs to play automatically
+      image.attr("src", response.data[i].images.fixed_height_small_still.url);
+      image.attr("data-still", response.data[i].images.fixed_height_small_still.url); 
+      image.attr("data-play", response.data[i].images.fixed_height_small.url); 
+      image.attr("data-state", "still"); 
 
-      // var image = $("<img>").attr("src", response.data[i].images.fixed_height.url); //create img element, image will go here
-      console.log(image);
       gifDiv.append(image);
 
       $("#gifs-appear").prepend(gifDiv);
     }; //endfor
               }) //end .then
-
+  $("body").on("click", "img", function() {
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-play"));
+      $(this).attr("data-state", "play");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });
   }); //end button on click
 })//end ready
